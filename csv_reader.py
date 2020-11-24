@@ -30,10 +30,22 @@ def csv_to_dataset(csv_path):
 
     y_normaliser = preprocessing.MinMaxScaler()
     y_normaliser.fit(nextday_open_values)
-    
+
+    #Adding more complexity to the model
+    technical_indicators = []
+    for hist_val in data_histories_normalised:
+        # taking SMA of closing price by hist_val[3]
+        sma = np.mean(hist_val[:, 3]) #simple moving average
+        technical_indicators.append(np.array([sma]))
+        
+    technical_indicators = np.array(technical_indicators)
+
+    scalar_tech_ind = preprocessing.MinMaxScaler()
+    technical_indicators_normalised = scalar_tech_ind.fit_transform(technical_indicators)
+
     #Checking if dim of x is equals to the dim of y
-    assert data_histories_normalised.shape[0] == nextday_open_values_normalised.shape[0]
+    assert data_histories_normalised.shape[0] == nextday_open_values_normalised.shape[0] == technical_indicators_normalised.shape[0]
     #Return the values
-    return data_histories_normalised, nextday_open_values_normalised, nextday_open_values, y_normaliser
+    return data_histories_normalised, technical_indicators_normalised, nextday_open_values_normalised, nextday_open_values, y_normaliser
 
 #csv_to_dataset('AAPL_daily.csv')

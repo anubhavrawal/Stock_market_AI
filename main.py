@@ -101,4 +101,5 @@ plt.legend(['Real', 'Predicted'])
 
 plt.savefig("sucess.png")
 
-model.save(f'basic_model.h5')
+
+model.save('basic_model.h5')

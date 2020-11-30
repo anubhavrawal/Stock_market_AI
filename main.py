@@ -16,7 +16,9 @@ tf.random.set_seed(7)
 
 # dataset
 
-processed_data_histories, technical_indicators, nextday_open_values, unscaled_y, y_normaliser  = csv_to_dataset('AAPL_daily.csv')
+ticker_name = 'TSLA'
+
+processed_data_histories, technical_indicators, nextday_open_values, unscaled_y, y_normaliser  = csv_to_dataset('%s_daily.csv'%ticker_name)
 
 #90% data for training
 split_percent = 0.9 
@@ -99,6 +101,7 @@ a, = plt.plot(range(0,N),unscaled_y_test,color='g',label='Actual')
 b, = plt.plot(range(0,N),y_test_predicted,color='m', label='Prediction')
 plt.legend(handles=[a, b])
 
-plt.savefig("sucess.png")
+plt.savefig("{0}_{1:.2f}_sucess.png".format(ticker_name,scaled_mse))
 
-model.save('basic_model.h5')
+
+model.save('%s_model.h5' %ticker_name)

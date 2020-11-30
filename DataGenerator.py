@@ -1,3 +1,5 @@
+#Code credit: datacamp
+
 import numpy as np
 
 class DataGeneratorSeq(object):

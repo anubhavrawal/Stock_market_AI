@@ -89,17 +89,16 @@ real_mse = np.mean(np.square(unscaled_y_test - y_test_predicted))
 scaled_mse = real_mse / (np.max(unscaled_y_test) - np.min(unscaled_y_test)) * 100
 print("Scaled error: ", scaled_mse)
 
-plt.gcf().set_size_inches(35, 18, forward=True)
+plt.plot(range(0,len(y_predicted)),y_predicted,color='g',label='Actual')
+plt.savefig("test.png")
 
-start = 0
-end = -1
+plt.figure(figsize = (18,9))
+N = len(unscaled_y_test)
 
-real = plt.plot(unscaled_y_test[start:end], label='real')
-pred = plt.plot(y_test_predicted[start:end], label='predicted')
-
-plt.legend(['Real', 'Predicted'])
+a, = plt.plot(range(0,N),unscaled_y_test,color='g',label='Actual')
+b, = plt.plot(range(0,N),y_test_predicted,color='m', label='Prediction')
+plt.legend(handles=[a, b])
 
 plt.savefig("sucess.png")
-
 
 model.save('basic_model.h5')

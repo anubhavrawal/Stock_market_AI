@@ -8,7 +8,7 @@ import datetime as dt
 
 api_key = 'Q0ALRJ06573WNE0V'
 
-ticker = "MSFT"
+ticker = "TSLA"
 time_window = 'daily'
 
 url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)

@@ -12,9 +12,9 @@ past_eval_points = 50
 
 
 def csv_to_dataset(csv_path):
-    df = pd.read_csv(csv_path)
-    df = data.drop('date', axis=1) # lets drop date as we only need time series to train the model
-    df = data.drop(0, axis=0) # remove the reminants
+    data = pd.read_csv(csv_path)
+    data = data.drop('date', axis=1) # lets drop date as we only need time series to train the model
+    data = data.drop(0, axis=0) # remove the reminants
 
     data = data.values # lets ditch the csv format and just keep the values
 
@@ -82,20 +82,22 @@ def csv_to_dataset_2(csv_path):
     train_data = train_data.reshape(-1,1)
     test_data = test_data.reshape(-1,1)
 
-    train_data_normaliser = preprocessing.MinMaxScaler() 
+    train_data_normaliser = preprocessing.MinMaxScaler() #0->1 DAta normalization
     train_data_normalized = train_data_normaliser.fit_transform(train_data)
 
     test_data_normaliser = preprocessing.MinMaxScaler() 
     test_data_normalized = test_data_normaliser.fit_transform(test_data)
     
-
+    '''
+    #Smoothing the curve to get rid of noise movement
+    # using Exponintial Moving Average
     EMA = 0.0
     gamma = 0.1
-
     for index in range(train_limit):
         EMA = gamma*train_data_normalized[index] + (1-gamma)*EMA
         train_data_normalized[index] = EMA
-
+    '''
+    
     # Used for visualization and test purposes
     all_mid_data = np.concatenate([train_data_normalized,test_data_normalized],axis=0) 
 

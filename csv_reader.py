@@ -88,16 +88,6 @@ def csv_to_dataset_2(csv_path):
     test_data_normaliser = preprocessing.MinMaxScaler() 
     test_data_normalized = test_data_normaliser.fit_transform(test_data)
     
-    '''
-    #Smoothing the curve to get rid of noise movement
-    # using Exponintial Moving Average
-    EMA = 0.0
-    gamma = 0.1
-    for index in range(train_limit):
-        EMA = gamma*train_data_normalized[index] + (1-gamma)*EMA
-        train_data_normalized[index] = EMA
-    '''
-    
     # Used for visualization and test purposes
     all_mid_data = np.concatenate([train_data_normalized,test_data_normalized],axis=0) 
 

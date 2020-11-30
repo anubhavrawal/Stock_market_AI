@@ -83,9 +83,8 @@ epochs = 30
 valid_summary = 1 # Interval you make test predictions
 
 n_predict_once = 50 # Number of steps you continously predict for
-
-
 '''
+
 
 # Building the Model
 """ lstm_input = Input(shape=(500, 1), name='lstm_input')

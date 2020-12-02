@@ -13,7 +13,7 @@ from csv_reader import csv_to_dataset, past_eval_points
 
 
 
-processed_data_histories, technical_indicators, nextday_open_values, unscaled_y, y_normaliser  = csv_to_dataset('AAPL_daily.csv')
+processed_data_histories, technical_indicators, nextday_open_values, unscaled_y, y_normaliser  = csv_to_dataset('TSLA_daily.csv')
 
 #90% data for training
 split_percent = 0.9 
@@ -30,7 +30,7 @@ y_test = nextday_open_values[train_limit:]
 
 unscaled_y_test = unscaled_y[train_limit:]
 
-model = load_model('basic_model.h5')
+model = load_model('models/TSLA_model.h5')
 
 #print(processed_data_test[0:1])
 #print( len(processed_data_test[0]) )
@@ -64,5 +64,5 @@ plt.show()
 #plt.plot(range(N,N+ len(y_predicted) ),y_predicted,color='k', label='Prediction2')
 
 
-plt.savefig("sucess.png")
+plt.savefig("predit_output.png")
 

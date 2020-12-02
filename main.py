@@ -104,4 +104,4 @@ plt.legend(handles=[a, b])
 plt.savefig("{0}_{1:.2f}_sucess.png".format(ticker_name,scaled_mse))
 
 
-model.save('%s_model.h5' %ticker_name)
+model.save('models/%s_model.h5' %ticker_name)
